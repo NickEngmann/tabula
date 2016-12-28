@@ -65,6 +65,9 @@ router.post('/', function (req, res) {
         case 'file':
             createExamples.createPageWithFile(accessToken, createResultCallback);
             break;
+        case 'search':
+            createExamples.createPageWithSearch(accessToken, createResultCallback);
+            break;
     }
 });
 
