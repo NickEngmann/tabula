@@ -12,3 +12,5 @@ Tabula imports your notes from various note taking apps including: <h1>OneNote, 
 2) Enable Developer Mode On Google Chrome Extensions
 3) Load Tabula under "Extensions"
 	-Within the Chrome Extension you can sync your notes and get started
+
+if you wish to change anything to the web app portion, contact me and i'll let you know how to set it up.
