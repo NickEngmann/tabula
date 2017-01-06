@@ -7,10 +7,20 @@ Tabula replaces ad content with your personal notes to better help you learn and
 Tabula imports your notes from various note taking apps including: <h1>OneNote, EverNote, and Albus.</h1>
 
 <h2> How To Install Tabula </h2>
+</br>
+1) Clone/Download This Repo </br>
+2) Enable Developer Mode On Google Chrome Extensions </br>
+3) Load Tabula under "Extensions" </br>
+	-Within the Chrome Extension you can sync your notes and get started</br>
 
-1) Clone/Download This Repo 
-2) Enable Developer Mode On Google Chrome Extensions
-3) Load Tabula under "Extensions"
-	-Within the Chrome Extension you can sync your notes and get started
+if you wish to change anything to the web app portion, contact me and i'll let you know how to set it up.</br>
 
-if you wish to change anything to the web app portion, contact me and i'll let you know how to set it up.
+<h2> How To Install the WebApp </h2>
+</br>
+1) Clone/Download This Repo </br>
+2) Go to the root directory of the 'webapp'</br>
+3) Setup project dependencies with the npm install command.</br>
+4) Run the app with the npm start command.</br>
+5) Open a browser and navigate to the app running by default on port 3000.</br>
+6) Login using your Microsoft account, and allow the app to create pages in your OneNote notebooks.</br>
+
