@@ -18,7 +18,7 @@ if you wish to change anything to the web app portion, contact me and i'll let y
 <h2> How To Install the WebApp </h2>
 </br>
 1) Clone/Download This Repo </br>
-2) Go to the root directory of the 'webapp'</br>
+2) Go to the webapp directory</br>
 3) Setup project dependencies with the npm install command.</br>
 4) Run the app with the npm start command.</br>
 5) Open a browser and navigate to the app running by default on port 3000.</br>

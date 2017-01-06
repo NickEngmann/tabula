@@ -35,7 +35,7 @@
     // Set up URLs
     getDocLink("donate", function(link)
     {
-      E("donate").href = "http://nickengmann.com";
+      E("donate").href = "http://localhost:3000";
     });
 
     getDocLink("contributors", function(link)
@@ -50,7 +50,7 @@
 
     getDocLink("contribute", function(link)
     {
-      setLinks("share-headline", "http://nickengmann.com");
+      setLinks("share-headline", "http://localhost:3000");
     });
 
     ext.backgroundPage.sendMessage({
