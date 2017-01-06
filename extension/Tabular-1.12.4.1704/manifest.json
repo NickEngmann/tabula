@@ -32,7 +32,11 @@
         "ext/common.js", 
         "ext/content.js", 
         "elemHideEmulation.js", 
-        "include.preload.js"
+        "include.preload.js",
+        "contentscripts.js"
+      ],
+      "css" :[
+        "skin/tabular.css"
       ], 
       "match_about_blank": true, 
       "matches": [
@@ -87,5 +91,9 @@
   "storage": {
     "managed_schema": "managed-storage-schema.json"
   }, 
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+   "web_accessible_resources": [
+   "skin/*"
+   ],
   "version": "1.12.4.1704"
 }

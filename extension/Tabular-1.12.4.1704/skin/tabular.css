@@ -1,0 +1,10 @@
+#tabularDiv
+{
+	display: block;
+	width: 95%;
+	height: 200px;
+	border: 2px;
+	position: relative;
+	border-style: solid;
+	border-color: #9300d5;
+}
