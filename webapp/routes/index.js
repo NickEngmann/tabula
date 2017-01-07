@@ -18,6 +18,7 @@ router.get('/', function (req, res) {
 var array = new Array();
 var realBody = new Array();
 var chromeArray = new Array();
+var queueSize;
 /* POST Create example request */
 router.post('/', function (req, res, next) {
     var accessToken = req.cookies['access_token'];
@@ -58,34 +59,13 @@ router.post('/', function (req, res, next) {
     };
     var createCallback = function (error, httpResponse, body) {
         var stringChromeArray = JSON.stringify(realBody);
-        // localStorage.setItem('tabular', stringChromeArray);
-        // console.log(localStorage.getItem('tabular'));
         var minute = 600 * 1000;
         console.log(stringChromeArray);
         res.cookie('tabular', stringChromeArray, { maxAge: minute });
-        // res.redirect('back');
-        // if (error) {
-        //     return res.render('error', {
-        //         message: 'HTTP Error',
-        //         error: {details: JSON.stringify(error, null, 2)}
-        //     });
-        // }
-        // // Get the submitted resource url from the JSON response
-        // var resourceUrl = null;
-
-        // if (resourceUrl) {
-        //     res.render('result', {
-        //         title: 'OneNote API Result',
-        //         body: realBody,
-        //         resourceUrl: resourceUrl
-        //     });
-
-        // } else {
-        //     res.render('error', {
-        //         message: 'OneNote API Error',
-        //         error: {status: httpResponse.statusCode, details: realBody}
-        //     });
-        // }
+        res.render('error', {
+            message: 'OneNote API Error',
+            error: {status: httpResponse.statusCode, details: realBody}
+        });
     };
     var createBetweenCallback = function (error, httpResponse, body) {
         // Parse the body since it is a JSON response
@@ -107,6 +87,9 @@ router.post('/', function (req, res, next) {
                 }
             }
         }
+        if(realBody.length == queueSize){
+            createExamples.createPageWithSearch(accessToken, createCallback);
+        }
 
     };
     var createSearchCallback = function (error, httpResponse, body) {
@@ -118,16 +101,12 @@ router.post('/', function (req, res, next) {
             for(var i = 0; i< lengthResults; i++){
                 array.push(parsedBody.value[i].contentUrl);
             }
+            console.log(array);
+            queueSize = array.length;
             while(array.length > 0){
                 createExamples.createPageWithSearchResults(accessToken, createBetweenCallback, array);
             }
-            if(array.length == 0){
-                // console.log(chromeArray);
 
-                //for now I am just going to stringify the text array to save space.
-                createExamples.createPageWithSearch(accessToken, createCallback);
-            }
-            createExamples.createPageWithSearch(accessToken, createCallback);
         } catch (e) {
             parsedBody = {};
         }

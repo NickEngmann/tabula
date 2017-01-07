@@ -46,6 +46,7 @@ var CreateExamples = function () {
     }
     function createSearchResults(accessToken, callback, multipart, array) {
         var options = {
+
             url: array[(array.length-1)],
             headers: {'Authorization': 'Bearer ' + accessToken}
         };
