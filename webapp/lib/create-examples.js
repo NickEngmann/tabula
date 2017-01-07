@@ -2,7 +2,6 @@ var request = require('request');
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
-
 var CreateExamples = function () {
     var oneNotePagesApiUrl = 'https://www.onenote.com/api/v1.0/pages';
 
@@ -35,7 +34,7 @@ var CreateExamples = function () {
     }
     function createSearch(accessToken, callback, multipart) {
         var options = {
-            url: "https://www.onenote.com/api/v1.0/pages?search=tabular",
+            url: "https://www.onenote.com/api/v1.0/pages?search=tabular4",
             headers: {'Authorization': 'Bearer ' + accessToken}
         };
         // Build simple request
@@ -44,20 +43,19 @@ var CreateExamples = function () {
             // options.body = payload;
         }
         var r = request.get(options, callback);
-        // Build multi-part request
-        // if (multipart) {
-        //     var CRLF = '\r\n';
-        //     var form = r.form(); // FormData instance
-        //     _.each(payload, function (partData, partId) {
-        //         form.append(partId, partData.body, {
-        //             // Use custom multi-part header
-        //             header: CRLF +
-        //                 '--' + form.getBoundary() + CRLF +
-        //                 'Content-Disposition: form-data; name=\"' + partId + '\"' + CRLF +
-        //                 'Content-Type: ' + partData.contentType + CRLF + CRLF
-        //         });
-        //     });
-        // }
+    }
+    function createSearchResults(accessToken, callback, multipart, array) {
+        var options = {
+            url: array[(array.length-1)],
+            headers: {'Authorization': 'Bearer ' + accessToken}
+        };
+        array.pop();
+        // Build simple request
+        if (!multipart) {
+            options.headers['Content-Type'] = 'text/html';
+            // options.body = payload;
+        }
+        var r = request.get(options, callback);
     }
     function dateTimeNowISO() {
         return new Date().toISOString();
@@ -111,8 +109,22 @@ var CreateExamples = function () {
         //     "    <b>text</b></p>" +
         //     "</body>" +
         //     "</html>";
-        
         createSearch(accessToken, callback, false);
+    };
+    this.createPageWithSearchResults = function (accessToken, callback, array) {
+        // var htmlPayload =
+        //     "<!DOCTYPE html>" +
+        //     "<html>" +
+        //     "<head>" +
+        //     "    <title>A page created from basic HTML-formatted text (Node.js Sample)</title>" +
+        //     "    <meta name=\"created\" content=\"" + dateTimeNowISO() + "\">" +
+        //     "</head>" +
+        //     "<body>" +
+        //     "    <p>This is a page that just contains some simple <i>formatted</i>" +
+        //     "    <b>text</b></p>" +
+        //     "</body>" +
+        //     "</html>";
+        createSearchResults(accessToken, callback, false, array);
     };
     /**
      * Create OneNote Page with Text and Images

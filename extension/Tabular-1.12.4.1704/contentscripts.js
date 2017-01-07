@@ -8,5 +8,4 @@ window.addEventListener("load", function() {
 	var tabularDiv = document.createElement('div');
 	tabularDiv.setAttribute('id', 'tabularDiv');
 	html.appendChild(tabularDiv);
-
 });

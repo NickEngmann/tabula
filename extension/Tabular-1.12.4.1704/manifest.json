@@ -59,7 +59,7 @@
     }
   ], 
   "default_locale": "en_US", 
-  "description": "Tabular - Take your notes with you everywhere you go", 
+  "description": "Tabular - Take your notes with you everywhere you go! Featuring Adblock Plus!", 
   "devtools_page": "devtools.html", 
   "icons": {
     "128": "icons/detailed/abp-128.png", 
@@ -84,6 +84,7 @@
     "webRequestBlocking", 
     "webNavigation", 
     "storage", 
+    "cookies", 
     "unlimitedStorage", 
     "notifications"
   ], 

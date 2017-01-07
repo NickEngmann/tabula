@@ -62,3 +62,17 @@ port.on("forward", function(msg, sender)
     targetPage.sendMessage(msg.payload);
   }
 });
+function getCookies(domain, name, callback) {
+    chrome.cookies.get({"url": domain, "name": name}, function(cookie) {
+        if(callback) {
+            callback(cookie.value);
+            console.log(cookie.value);
+        }
+    });
+}
+
+//usage:
+getCookies("http://localhost:3000", "tabular", function(id) {
+    alert(id);
+    console.log(id);
+});
