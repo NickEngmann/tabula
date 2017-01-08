@@ -32,12 +32,9 @@
         "ext/common.js", 
         "ext/content.js", 
         "elemHideEmulation.js", 
-        "include.preload.js",
-        "contentscripts.js"
+        "include.preload.js"
       ],
-      "css" :[
-        "skin/tabular.css"
-      ], 
+       
       "match_about_blank": true, 
       "matches": [
         "http://*/*", 
@@ -48,7 +45,11 @@
     {
       "all_frames": true, 
       "js": [
-        "include.postload.js"
+        "include.postload.js",
+        "contentscripts.js"
+      ],
+      "css" :[
+        "skin/tabular.css"
       ], 
       "match_about_blank": true, 
       "matches": [

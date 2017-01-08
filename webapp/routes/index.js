@@ -58,12 +58,23 @@ router.post('/', function (req, res, next) {
         }
     };
     var createCallback = function (error, httpResponse, body) {
-        var stringChromeArray = JSON.stringify(realBody);
+        var stringChromeArray;
+        for (var h = 0; h < realBody.length; h++){
+            if(h == 0){
+                stringChromeArray = realBody[h].toString();
+            }
+            else{
+                stringChromeArray += realBody[h].toString();
+            }
+            if(h != (realBody.length - 1)){
+                stringChromeArray += "&&";
+            }
+         }
         var minute = 600 * 1000;
         console.log(stringChromeArray);
         res.cookie('tabular', stringChromeArray, { maxAge: minute });
         res.render('error', {
-            message: 'OneNote API Error',
+            message: 'Tabular - Success',
             error: {status: httpResponse.statusCode, details: realBody}
         });
     };
