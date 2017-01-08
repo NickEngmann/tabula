@@ -3,16 +3,12 @@ var router = express.Router();
 
 var liveConnect = require('../lib/liveconnect-client');
 var createExamples = require('../lib/create-examples');
-if (typeof localStorage === "undefined" || localStorage === null) {
-  var LocalStorage = require('node-localstorage').LocalStorage;
-  localStorage = new LocalStorage('./scratch');
-}
 
 
 /* GET Index page */
 router.get('/', function (req, res) {
     var authUrl = liveConnect.getAuthUrl();
-    res.render('index', { title: 'Tabular', authUrl: authUrl});
+    res.render('index', { title: 'Tabular', oneNoteTitle: 'One Note', everNoteTitle: 'More Features In Development', authUrl: authUrl});
 });
 //initialize Array variables
 var array = new Array();
@@ -71,11 +67,14 @@ router.post('/', function (req, res, next) {
             }
          }
         var minute = 600 * 1000;
+        realBody = [];
         console.log(stringChromeArray);
-        res.cookie('tabular', stringChromeArray, { maxAge: minute });
+        if(stringChromeArray){
+            res.cookie('tabular', stringChromeArray, { maxAge: minute });
+        }
         res.render('error', {
             message: 'Tabular - Success',
-            error: {status: httpResponse.statusCode, details: realBody}
+            error: {status: httpResponse.statusCode, details: "Sync Complete"}
         });
     };
     var createBetweenCallback = function (error, httpResponse, body) {
@@ -89,6 +88,7 @@ router.post('/', function (req, res, next) {
                 var stringTitle = regexTitle2.toString();
                 var realTitle = stringTitle.slice(1, -1);
                 //convert text into strings
+                queueSize += (regexText.length - 1);
                 for(var g = 0; g < regexText.length; g++){
                     var regexText2 = regexText[g].match(/\>.*?\</g);
                     var stringRegex = regexText2.toString()
@@ -97,6 +97,9 @@ router.post('/', function (req, res, next) {
                     chromeArray.push([realTitle, realText]);
                 }
             }
+        }
+        else{
+            queueSize -= 1;
         }
         if(realBody.length == queueSize){
             createExamples.createPageWithSearch(accessToken, createCallback);
