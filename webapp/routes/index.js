@@ -66,11 +66,23 @@ router.post('/', function (req, res, next) {
                 stringChromeArray += "&&";
             }
          }
-        var minute = 600 * 1000;
+        var minute = 60 * 10000;
         realBody = [];
         console.log(stringChromeArray);
         if(stringChromeArray){
-            res.cookie('tabular', stringChromeArray, { maxAge: minute });
+            res.cookie('tabular', stringChromeArray.slice(0,2000), { maxAge: minute });
+            if(stringChromeArray.length > 2000){
+                res.cookie('tabular2', stringChromeArray.slice(2000,4000), { maxAge: minute });
+                if(stringChromeArray.length > 4000){
+                    res.cookie('tabular3', stringChromeArray.slice(4000,6000), { maxAge: minute });
+                }
+                    if(stringChromeArray.length > 6000){
+                        res.cookie('tabular4', stringChromeArray.slice(6000,8000), { maxAge: minute });
+                    }
+                        if(stringChromeArray.length > 8000){
+                            res.cookie('tabular5', stringChromeArray.slice(8000,10000), { maxAge: minute });
+                        }
+            }
         }
         res.render('error', {
             message: 'Tabular - Success',
@@ -91,8 +103,8 @@ router.post('/', function (req, res, next) {
                 queueSize += (regexText.length - 1);
                 for(var g = 0; g < regexText.length; g++){
                     var regexText2 = regexText[g].match(/\>.*?\</g);
-                    var stringRegex = regexText2.toString()
-                    realText = stringRegex.slice(1, -1)
+                    var stringRegex = regexText2.toString();
+                    realText = stringRegex.slice(1, -1);
                     realBody.push(realText);
                     chromeArray.push([realTitle, realText]);
                 }
