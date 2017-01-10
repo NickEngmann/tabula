@@ -86,7 +86,7 @@ router.post('/', function (req, res, next) {
         }
         res.render('error', {
             message: 'Tabular - Success',
-            error: {status: httpResponse.statusCode, details: "Sync Complete"}
+            error: {status: httpResponse.statusCode, details: "Sync Complete! Refresh this page in 10 seconds and check out the box below to see tabular in action!"}
         });
     };
     var createBetweenCallback = function (error, httpResponse, body) {

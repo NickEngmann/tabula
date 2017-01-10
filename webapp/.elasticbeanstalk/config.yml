@@ -1,0 +1,14 @@
+branch-defaults:
+  default:
+    environment: null
+  master:
+    environment: Sample-env
+global:
+  application_name: tabularWebApp
+  branch: null
+  default_ec2_keyname: tabular
+  default_platform: Node.js
+  default_region: us-west-2
+  profile: eb-cli
+  repository: null
+  sc: null

@@ -1,14 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Courgette');
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    font: 14px;
     background-color: #9300d5;
+    font-family: 'Courgette', cursive;
 }
 
 a {
     color: #00B7FF;
 }
-
+pre{
+    font-size: 22px;
+    font-family: 'Courgette', cursive;
+    color: white;
+}
 button {
     padding: 10px 20px;
     margin-bottom: 10px;
+    font-size: 15px;
+    border-radius: 9px;
+    color: white;
+    background-color: #80397b;
+}
+
+h1 {
+    color: white;
+    font-size: 4.6em;
+    -webkit-margin-before: 0.1em;
+    -webkit-margin-after: 0.17em;
+    font-style: inherit;
+    font-family: 'Courgette', cursive;
+}
+p{
+	font-family: 'Courgette', cursive;
+	font-size: 1.3em;
+	width: 65%;
+}
+#onenote{
+	margin-top: 20px;
+	border-radius: 25px;
+	width: 23em;
+}
+#tabulalogo{
+    width: 20em;
+}
+#blockbuttons{
+	margin: 15px;
+    width: 300px;
+    margin-bottom: 50px;
+}
+#leftbutton{
+	float: left;
+}
+#rightbutton{
+	float: right;
+}
+#evernote{
+	margin-top: 30px;
+	border-radius: 25px;
+	width: 23em;
+}
+#frontpage{
+	color: white;
 }
