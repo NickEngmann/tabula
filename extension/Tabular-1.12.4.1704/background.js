@@ -74,7 +74,7 @@ function getCookies(domain, name, callback) {
 
 //every 10 seconds I get the cookies from the web app
 setInterval( function () {
-  getCookies("http://localhost:3000", "tabular", function(id) {
+  getCookies("https://www.tabular-webapp.com", "tabular", function(id) {
     //fully decode the cookies from the web app
     var decodeString = decodeURIComponent(id);
     var noApostrophe = decodeString.replace(/&#39;/g, "'");

@@ -74,7 +74,7 @@ function onLoad()
   }, false);
   document.getElementById("sync").addEventListener("click", function()
   {
-    window.open("http://localhost:3000");
+    window.open("https://www.tabular-webapp.com");
   }, false);
 
   // Set up collapsing of menu items
