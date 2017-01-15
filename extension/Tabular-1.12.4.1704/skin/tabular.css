@@ -20,7 +20,7 @@
 	overflow: scroll;
 	overflow-x:hidden;
 }
-p{
+p#tabularInjected{
 	font-family: 'Courgette', cursive;
     font-size: 1.2em;
     margin-left: 10px;

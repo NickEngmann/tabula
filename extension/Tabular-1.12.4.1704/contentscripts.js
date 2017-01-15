@@ -15,7 +15,7 @@ window.addEventListener("load", function load() {
 					// tabularDiv2.innerHTML += "<p>"+results[rN]+"</p>";
 					var content = document.createElement('div');
 					content.setAttribute('id', 'tabularDiv2');
-					content.innerHTML += "<p>"+results[rN]+"</p>";
+					content.innerHTML += "<p id='tabularInjected'>"+results[rN]+"</p>";
 					tabularDiv2.appendChild(content);
 					//place the loaded chrome storage text inside the div
 				}
