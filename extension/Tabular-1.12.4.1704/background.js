@@ -79,45 +79,59 @@ setInterval( function () {
     var decodeString = decodeURIComponent(id);
     var noApostrophe = decodeString.replace(/&#39;/g, "'");
     var array = noApostrophe.split("&&");
-    if(array.length > 15){
-      getCookies("https://www.tabular-webapp.com", "tabular2", function(id2) {
+    var splitLength = 1;
+    while(array.length > splitLength*15){
+      splitLength + 1;
+      getCookies("https://www.tabular-webapp.com", "tabular" + splitLength.toString(), function(id2) {
         //don't mind me, just decoding more cookies
         decodeString = decodeURIComponent(id2);
         noApostrophe = decodeString.replace(/&#39;/g, "'");
         tempArray = noApostrophe.split("&&");
         array = array.concat(tempArray);
-          if(array.length > 30){
-            getCookies("https://www.tabular-webapp.com", "tabular3", function(id3) {
-              //don't mind me, just decoding more cookies
-              decodeString = decodeURIComponent(id3);
-              noApostrophe = decodeString.replace(/&#39;/g, "'");
-              tempArray = noApostrophe.split("&&");
-              array = array.concat(tempArray);
-              if(array.length > 50){
-                getCookies("https://www.tabular-webapp.com", "tabular4", function(id4) {
-                  //don't mind me, just decoding more cookies
-                  decodeString = decodeURIComponent(id4);
-                  noApostrophe = decodeString.replace(/&#39;/g, "'");
-                  tempArray = noApostrophe.split("&&");
-                  array = array.concat(tempArray);
-                  if(array.length > 65){
-                    getCookies("https://www.tabular-webapp.com", "tabular5", function(id5) {
-                      //don't mind me, just decoding more cookies
-                      decodeString = decodeURIComponent(id4);
-                      noApostrophe = decodeString.replace(/&#39;/g, "'");
-                      tempArray = noApostrophe.split("&&");
-                      array = array.concat(tempArray);
-                    })
-                  }
-                })
-              }
-            }) 
-          }
+        console.log(array);
       })
     }
+
+    // if(array.length > 15){
+    //   getCookies("https://www.tabular-webapp.com", "tabular2", function(id2) {
+    //     //don't mind me, just decoding more cookies
+    //     decodeString = decodeURIComponent(id2);
+    //     noApostrophe = decodeString.replace(/&#39;/g, "'");
+    //     tempArray = noApostrophe.split("&&");
+    //     array = array.concat(tempArray);
+    //       if(array.length > 30){
+    //         getCookies("https://www.tabular-webapp.com", "tabular3", function(id3) {
+    //           //don't mind me, just decoding more cookies
+    //           decodeString = decodeURIComponent(id3);
+    //           noApostrophe = decodeString.replace(/&#39;/g, "'");
+    //           tempArray = noApostrophe.split("&&");
+    //           array = array.concat(tempArray);
+    //           if(array.length > 50){
+    //             getCookies("https://www.tabular-webapp.com", "tabular4", function(id4) {
+    //               //don't mind me, just decoding more cookies
+    //               decodeString = decodeURIComponent(id4);
+    //               noApostrophe = decodeString.replace(/&#39;/g, "'");
+    //               tempArray = noApostrophe.split("&&");
+    //               array = array.concat(tempArray);
+    //               if(array.length > 65){
+    //                 getCookies("https://www.tabular-webapp.com", "tabular5", function(id5) {
+    //                   //don't mind me, just decoding more cookies
+    //                   decodeString = decodeURIComponent(id4);
+    //                   noApostrophe = decodeString.replace(/&#39;/g, "'");
+    //                   tempArray = noApostrophe.split("&&");
+    //                   array = array.concat(tempArray);
+    //                 })
+    //               }
+    //             })
+    //           }
+    //         }) 
+    //       }
+    //   })
+    // }
     if(array != null){
       //if the array exists then I need to go ahead and save it into chrome storage
       chrome.storage.local.set({'tabularResults': array}); 
     }
   })
 }, 30000);
+

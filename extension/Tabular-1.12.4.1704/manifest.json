@@ -3,6 +3,7 @@
   "background": {
     "persistent": true, 
     "scripts": [
+      "jquery-3.1.1.min.js",
       "ext/common.js", 
       "ext/background.js", 
       "lib/compat.js", 
@@ -29,6 +30,7 @@
     {
       "all_frames": true, 
       "js": [
+        "jquery-3.1.1.min.js",
         "ext/common.js", 
         "ext/content.js", 
         "elemHideEmulation.js", 

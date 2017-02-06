@@ -34,7 +34,7 @@ var CreateExamples = function () {
     }
     function createSearch(accessToken, callback, multipart) {
         var options = {
-            url: "https://www.onenote.com/api/v1.0/pages?search=tabular",
+            url: "https://www.onenote.com/api/v1.0/pages?search=tabular30",
             headers: {'Authorization': 'Bearer ' + accessToken}
         };
         // Build simple request

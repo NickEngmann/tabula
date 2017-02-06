@@ -15,9 +15,10 @@ window.addEventListener("load", function load() {
 					// tabularDiv2.innerHTML += "<p>"+results[rN]+"</p>";
 					var content = document.createElement('div');
 					content.setAttribute('id', 'tabularDiv2');
-					content.innerHTML += "<p id='tabularInjected'>"+results[rN]+"</p>";
+					content.innerHTML += "<p id='tabularInjected'>"+results[rN]+"</p><input id = 'btnSubmit' type='submit' value='Hide'/>";
 					tabularDiv2.appendChild(content);
 					//place the loaded chrome storage text inside the div
+
 				}
 		}
   	});
@@ -27,4 +28,10 @@ window.addEventListener("load", function load() {
 	var tabularDiv = document.createElement('div');
 	tabularDiv.setAttribute('id', 'tabularDiv');
 	html.appendChild(tabularDiv);
+$(document).ready(function() {
+    $("#btnSubmit").click(function(){
+        $(this).parent().parent().hide();
+    }); 
 });
+});
+
