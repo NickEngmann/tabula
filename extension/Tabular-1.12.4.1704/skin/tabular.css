@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 
-#tabularDiv
-{
-	display: block;
+#tabularDiv{
+	display: -webkit-box;
 	width: 98.5%;
 	height: 175px;
 	border: 3px;
@@ -10,9 +9,11 @@
 	border-style: solid;
 	border-color: #9300d5;
 	background-color: white;
+	border-width: 4px;
+    width: 99%;
 }
-#tabularDiv2
-{
+
+#tabularDiv2{
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -20,8 +21,17 @@
 	overflow: scroll;
 	overflow-x:hidden;
 }
+
 p#tabularInjected{
 	font-family: 'Courgette', cursive;
     font-size: 1.2em;
     margin-left: 10px;
+}
+
+#btnSubmit{
+	float: right;
+    border: rgb(147, 0, 213);
+    border-style: outset;
+    background: white;
+    font-size: 1.1em;
 }

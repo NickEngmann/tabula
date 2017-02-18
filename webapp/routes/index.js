@@ -72,25 +72,14 @@ router.post('/', function (req, res, next) {
         if(stringChromeArray){
             var cookiesLength = 1;
             var lowerBound = 0;
-            var upperBound = cookieslength*1000;
-            res.cookie('tabular', stringChromeArray.slice(0,100), { maxAge: minute });
-            // while(stringChromeArray.length > cookiesLength*2000){
-            //     lowerBound = cookieslength * 2000;
-            //     cookiesLength = cookiesLength + 1;
-            //     upperBound = cookieslength*2000;
-            //     res.cookie('tabular' + cookiesLength.toString(), stringChromeArray.slice(lowerBound,upperBound), { maxAge: minute });
-            // if(stringChromeArray.length > 2000){
-            //     res.cookie('tabular2', stringChromeArray.slice(2000,4000), { maxAge: minute });  
-            // }
-            // if(stringChromeArray.length > 4000){
-            //     res.cookie('tabular3', stringChromeArray.slice(4000,6000), { maxAge: minute });
-            // }
-            // if(stringChromeArray.length > 6000){
-            //     res.cookie('tabular4', stringChromeArray.slice(6000,8000), { maxAge: minute });
-            // }
-            // if(stringChromeArray.length > 8000){
-            //     res.cookie('tabular5', stringChromeArray.slice(8000,10000), { maxAge: minute });
-            // }
+            var upperBound = cookiesLength*1000;
+            res.cookie('tabular', stringChromeArray.slice(0,2000), { maxAge: minute });
+            while(stringChromeArray.length > cookiesLength*2000){
+                lowerBound = cookiesLength * 2000;
+                cookiesLength = cookiesLength + 1;
+                upperBound = cookiesLength*2000;
+                res.cookie('tabular' + cookiesLength.toString(), stringChromeArray.slice(lowerBound,upperBound), { maxAge: minute });
+            }
         }
         res.render('error', {
             message: 'Tabular - Success',
