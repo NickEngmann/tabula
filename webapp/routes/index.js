@@ -15,7 +15,7 @@ var array = new Array();
 var realBody = new Array();
 var chromeArray = new Array();
 var queueSize;
-/* POST Create example request */
+/* POST request */
 router.post('/', function (req, res, next) {
     var accessToken = req.cookies['access_token'];
     var exampleType = req.body['submit'];
@@ -63,23 +63,31 @@ router.post('/', function (req, res, next) {
                 stringChromeArray += realBody[h].toString();
             }
             if(h != (realBody.length - 1)){
+                //insert a delimeter
                 stringChromeArray += "&&";
             }
          }
         var minute = 60 * 10000;
-        realBody = [];
-        console.log(stringChromeArray);
+        //check to make sure the body and the string array match with the added delimeters
+        console.log("real Array " + realBody); 
+        console.log("Delimeter added String Array  " + stringChromeArray);
         if(stringChromeArray){
             var cookiesLength = 1;
             var lowerBound = 0;
-            var upperBound = cookiesLength*1000;
-            res.cookie('tabular', stringChromeArray.slice(0,2000), { maxAge: minute });
+            var upperBound = cookiesLength*2000;
+            res.cookie('tabular', stringChromeArray.slice(lowerBound,upperBound), { maxAge: minute });
+            //convert the array to cookies
             while(stringChromeArray.length > cookiesLength*2000){
                 lowerBound = cookiesLength * 2000;
                 cookiesLength = cookiesLength + 1;
                 upperBound = cookiesLength*2000;
                 res.cookie('tabular' + cookiesLength.toString(), stringChromeArray.slice(lowerBound,upperBound), { maxAge: minute });
             }
+            //destroy all globals
+            realBody = []; 
+            array = [];
+            chromeArray = [];
+            queueSize = 0;
         }
         res.render('error', {
             message: 'Tabular - Success',
@@ -110,23 +118,27 @@ router.post('/', function (req, res, next) {
         else{
             queueSize -= 1;
         }
+        console.log("queueSize is "+ queueSize);
         if(realBody.length == queueSize){
             createExamples.createPageWithSearch(accessToken, createCallback);
         }
 
     };
     var createSearchCallback = function (error, httpResponse, body) {
-        // Parse the body since it is a JSON response
+        // Parse the body since it is a JSON 
         var parsedBody;
         try {
             parsedBody = JSON.parse(body);
+            console.log("Body returned by Search Callback " + parsedBody.value);
             var lengthResults = parsedBody.value.length;
+            //console.log(lengthResults);
             for(var i = 0; i< lengthResults; i++){
                 array.push(parsedBody.value[i].contentUrl);
             }
             console.log(array);
             queueSize = array.length;
             while(array.length > 0){
+                //continue to call the createPagewithSearch results to get the actual text content from those pages until realbody is equal to queueSize
                 createExamples.createPageWithSearchResults(accessToken, createBetweenCallback, array);
             }
 

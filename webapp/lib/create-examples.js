@@ -34,7 +34,7 @@ var CreateExamples = function () {
     }
     function createSearch(accessToken, callback, multipart) {
         var options = {
-            url: "https://www.onenote.com/api/v1.0/pages?search=tabular",
+            url: "https://www.onenote.com/api/v1.0/pages?search=tabular&top=100",
             headers: {'Authorization': 'Bearer ' + accessToken}
         };
         // Build simple request
@@ -50,7 +50,9 @@ var CreateExamples = function () {
             url: array[(array.length-1)],
             headers: {'Authorization': 'Bearer ' + accessToken}
         };
-        array.pop();
+        //go through and get the page content for each individual url in the array
+        array.pop();    
+        console.log(array.length);
         // Build simple request
         if (!multipart) {
             options.headers['Content-Type'] = 'text/html';

@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
     var authCode = req.query['code'];
 
     if (authCode) {
-        // Request an access token from the auth code
+        // Request an access token from the auth code 
         liveConnect.requestAccessTokenByAuthCode(authCode,
             function (responseData) {
                 var accessToken = responseData['access_token'],
