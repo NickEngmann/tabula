@@ -4,7 +4,7 @@ block content
   center 
     h1= title
     img#tabulalogo(src= "images/tabula.png")
-    p#frontpage Tabular works by accessing your OneNote, EverNote, and Albus accounts and finding everything with the (flag) icon. These notes will then show up instead of ad content!
+    p#frontpage Tabular works by accessing your OneNote account and finding everything with the (flag) icon. These notes will then show up instead of ad content!
     img#onenote(src= "images/onenote.png")
     #blockbuttons
       #leftbutton
@@ -24,7 +24,6 @@ block content
             br
           button(type="submit", name="submit", value="search" disabled) Sync with OneNote
           br
-    img#evernote(src= "images/evernote.png")
   script.
     window.authUrl = '!{authUrl}';
   script(src="/javascripts/index.js")
