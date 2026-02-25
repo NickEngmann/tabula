@@ -4,7 +4,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var callback = require('./routes/callback');
+
+// Health check endpoint
+app.get('/health', function(req, res) {
+    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// 404 handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});ck = require('./routes/callback');
 
 var app = express();
 
