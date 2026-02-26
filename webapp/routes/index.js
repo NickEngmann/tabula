@@ -147,6 +147,15 @@ router.post('/', function (req, res, next) {
         }
     };
     // Request the specified create example
+    var validExampleTypes = ['text', 'textimage', 'html', 'url', 'file', 'search'];
+    
+    if (validExampleTypes.indexOf(exampleType) === -1) {
+        return res.render('error', {
+            message: 'Invalid Example Type',
+            error: {status: 400, details: 'Invalid example type: ' + exampleType}
+        });
+    }
+    
     switch (exampleType) {
         case 'text':
             createExamples.createPageWithSimpleText(accessToken, createResultCallback);
